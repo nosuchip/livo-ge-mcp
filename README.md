@@ -13,14 +13,48 @@ Next.js и проверен живыми запросами - разбор в [`
 ## Установка
 
 ```bash
-git clone <repo> livo-ge-mcp && cd livo-ge-mcp && npm install
-claude mcp add livo-ge --scope user -- node "$PWD/src/index.mjs"
+claude mcp add livo-ge --scope user -- npx -y livo-ge-mcp@1
 ```
 
-Проверить: `npm test` (ходит в сеть по-настоящему).
+Нужен Node >= 20. Клонировать и ставить вручную ничего не надо: `npx` сам скачает пакет
+из npm и закеширует. `@1` фиксирует мажорную версию, обновления внутри неё приезжают
+сами, а ломающий релиз молча не подменит сервер.
 
-Переменные окружения: `LIVO_LOCALE` (`ka` | `en` | `ru`, по умолчанию `ru` - заголовок
-переводит **данные**, а не только UI) и `LIVO_MIN_INTERVAL_MS` (по умолчанию 1000).
+Проверить, что сервер подключился: `claude mcp list`.
+
+Для клиентов с JSON-конфигом (Claude Desktop, Cursor, Windsurf):
+
+```json
+{
+  "mcpServers": {
+    "livo-ge": {
+      "command": "npx",
+      "args": ["-y", "livo-ge-mcp@1"],
+      "env": { "LIVO_LOCALE": "ru" }
+    }
+  }
+}
+```
+
+<details>
+<summary>Из исходников</summary>
+
+```bash
+git clone https://github.com/nosuchip/livo-ge-mcp && cd livo-ge-mcp && npm install
+claude mcp add livo-ge --scope user -- node "$PWD/src/index.mjs"
+npm test   # смоук-тест, ходит в сеть по-настоящему
+```
+
+</details>
+
+### Настройки
+
+| Переменная | По умолчанию | Что делает |
+|---|---|---|
+| `LIVO_LOCALE` | `ru` | `ka` \| `en` \| `ru`. Заголовок переводит **данные**, а не только UI |
+| `LIVO_MIN_INTERVAL_MS` | `1000` | Минимальный интервал между запросами, глобально |
+
+Задать при установке: `claude mcp add livo-ge --scope user -e LIVO_LOCALE=en -- npx -y livo-ge-mcp@1`.
 
 ## Инструменты
 
@@ -76,4 +110,4 @@ claude mcp add livo-ge --scope user -- node "$PWD/src/index.mjs"
 
 ## Лицензия
 
-MIT.
+MIT, см. [`LICENSE`](LICENSE).

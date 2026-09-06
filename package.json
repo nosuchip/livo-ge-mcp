@@ -1,18 +1,44 @@
 {
   "name": "livo-ge-mcp",
   "version": "1.0.0",
-  "description": "MCP-сервер над livo.ge — порталом недвижимости группы tnet. Прозрачный stateless-прокси.",
+  "description": "MCP-сервер над livo.ge - порталом недвижимости группы tnet. Прозрачный stateless-прокси.",
   "type": "module",
   "license": "MIT",
-  "engines": { "node": ">=20" },
-  "bin": { "livo-ge-mcp": "src/index.mjs" },
+  "author": "Alex Xela",
+  "homepage": "https://github.com/nosuchip/livo-ge-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nosuchip/livo-ge-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nosuchip/livo-ge-mcp/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "livo-ge-mcp": "src/index.mjs"
+  },
   "main": "src/index.mjs",
-  "files": ["src", "docs", "README.md", "LICENSE"],
+  "files": [
+    "src",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/index.mjs",
     "test": "node test/smoke.mjs"
   },
-  "keywords": ["mcp", "model-context-protocol", "real-estate", "georgia", "tbilisi", "livo.ge", "myhome.ge"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "real-estate",
+    "georgia",
+    "tbilisi",
+    "livo.ge",
+    "myhome.ge"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^3.25.0"
